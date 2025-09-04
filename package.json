@@ -2,12 +2,13 @@
   "name": "lemoncode_bootcamp_backend_laboratorio04",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
+ "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/api/server.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/api/server.js",
     "test": "vitest",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "test:ci": "vitest --run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "@types/express": "^5.0.3",
     "@types/node": "^24.3.1",
     "@types/supertest": "^6.0.3",
+    "@vitest/coverage-v8": "^3.2.4",
     "supertest": "^7.1.4",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2",
