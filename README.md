@@ -25,3 +25,9 @@ Build:
 ```bash
 docker build -t houses-api:dev .
 ```
+
+## Docker image (GHCR)
+```bash
+docker pull ghcr.io/<usuario>/<repo>:latest
+docker run --rm -p 3000:3000 ghcr.io/<usuario>/<repo>:latest
+```
