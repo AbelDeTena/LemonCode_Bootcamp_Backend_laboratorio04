@@ -1,31 +1,18 @@
-import { HouseSummary, HouseDetail, Review } from "./houses.api-model";
-import { DbHouse } from "../../dals/houses/houses.db-model";
+import { HouseSummaryVM, HouseDetailVM, ReviewVM } from "./houses.api-model";
+import { DbHouse } from "../../dals/houses";
+import { getString, getNumber, toIso } from "../../common-app";
 
-const getString = (v: unknown, fallback = "") =>
-  (typeof v === "string" && v) || fallback;
-
-const getNumber = (v: unknown, fallback = 0) =>
-  (typeof v === "number" && v) || fallback;
-
-const toIso = (d: unknown): string => {
-  if (d instanceof Date) return d.toISOString();
-  if (typeof d === "string") return new Date(d).toISOString();
-  return new Date(0).toISOString();
-};
-
-// SUMMARY
-export const mapHouseFromModelToApiSummary = (doc: DbHouse): HouseSummary => ({
+export const mapDbHouseToHouseSummaryVM = (doc: DbHouse): HouseSummaryVM => ({
   id: getString(doc._id),
   title: getString(doc.name),
   country: getString(doc.address?.country),
   pictureUrl: getString(doc.images?.picture_url),
 });
 
-// DETAIL
-export const mapHouseFromModelToApiDetail = (doc: DbHouse): HouseDetail => {
-  const lastReviews: Review[] = (doc.reviews ?? [])
-    .slice(-5)                 // coge las 5 últimas
-    .reverse()                 // de más reciente a más antigua
+export const mapDbHouseToHouseDetailVM = (doc: DbHouse): HouseDetailVM => {
+  const lastReviews: ReviewVM[] = (doc.reviews ?? [])
+    .slice(-5)                 
+    .reverse()                 
     .map(r => ({
       author: getString(r.reviewer_name),
       comment: getString(r.comments),

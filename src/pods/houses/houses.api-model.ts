@@ -1,17 +1,17 @@
-export interface HouseSummary {
+export interface HouseSummaryVM {
   id: string;
   title: string;
   country: string;
   pictureUrl: string;
 }
 
-export interface Review {
+export interface ReviewVM {
   author: string;
   comment: string;
   date: string;
 }
 
-export interface HouseDetail {
+export interface HouseDetailVM {
   id: string;
   title: string;
   pictureUrl: string;
@@ -20,5 +20,5 @@ export interface HouseDetail {
   bedrooms: number;
   beds: number;
   bathrooms: number;
-  lastReviews: Review[];
+  lastReviews: ReviewVM[];
 }
