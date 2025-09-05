@@ -8,7 +8,10 @@
     "start": "node dist/api/server.js",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "test:ci": "vitest --run --coverage"
+    "test:ci": "vitest --run --coverage",
+    "mongo:start": "docker rm -f mongo 2>NUL & docker run -d --name mongo -p 27017:27017 -v \"%CD%/seed/dump:/dump\" -e MONGO_INITDB_DATABASE=house-booking mongo:6",
+    "mongo:seed": "docker exec -it mongo sh -lc \"mongorestore --drop --dir /dump/house-booking --nsFrom 'house-booking.*' --nsTo 'house-booking.*'\"",
+    "mongo:stop": "docker rm -f mongo"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +29,7 @@
   },
   "dependencies": {
     "dotenv": "^17.2.2",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.19.0"
   }
 }
