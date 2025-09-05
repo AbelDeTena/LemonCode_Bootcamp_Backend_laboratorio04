@@ -3,7 +3,7 @@ import { DbHouse } from "../../dals/houses";
 import { getString, getNumber, toIso } from "../../common-app";
 
 export const mapDbHouseToHouseSummaryVM = (doc: DbHouse): HouseSummaryVM => ({
-  id: getString(doc._id),
+  id: String((doc as any)._id),   
   title: getString(doc.name),
   country: getString(doc.address?.country),
   pictureUrl: getString(doc.images?.picture_url),
@@ -20,7 +20,7 @@ export const mapDbHouseToHouseDetailVM = (doc: DbHouse): HouseDetailVM => {
     }));
 
   return {
-    id: getString(doc._id),
+     id: String((doc as any)._id),  
     title: getString(doc.name),
     pictureUrl: getString(doc.images?.picture_url),
     description: getString(doc.description),
