@@ -1,7 +1,7 @@
 import { getDb } from "../mongo.connection";
 import { DbHouse } from "./houses.db-model";
 
-const COLLECTION = "listingsAndReviews";
+const COLLECTION = "listingsAndReviews" as const;
 
 export const getHouses = async (opts: {
   country?: string;
