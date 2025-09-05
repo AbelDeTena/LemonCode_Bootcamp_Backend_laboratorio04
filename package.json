@@ -11,7 +11,7 @@
     "test:ci": "vitest --run --coverage",
     "mongo:up": "docker compose up -d mongo",
     "mongo:down": "docker compose down",
-     "mongo:seed": "docker exec mongo sh -lc \"mongorestore --drop --dir /dump --nsInclude 'house-booking.listingsAndReviews'\"",
+    "mongo:seed": "docker exec mongo sh -lc \"mongorestore --drop --dir /dump --nsInclude 'house-booking.listingsAndReviews'\"",
     "db:count": "docker exec mongo mongosh --quiet --eval \"db.getSiblingDB('house-booking').listingsAndReviews.countDocuments()\"",
     "db:reset": "npm run mongo:down && npm run mongo:up && node -e \"setTimeout(()=>{}, 2500)\" && npm run mongo:seed && npm run db:count"
   },
